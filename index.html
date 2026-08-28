@@ -29,12 +29,6 @@
                         Hábitos
                     </h5>
                     <ul class="habits-list px-0" id="habits-list">
-                        <li class="habits-list-item">
-                            Not completed
-                        </li>
-                        <li class="habits-list-item-completed">
-                            Completed!
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -45,16 +39,16 @@
                     </h5>
                     <form>
                         <div class="mb-3">
-                            <label for="name" class="form-label pt-1">Descripción: </label>
+                            <label for="habit-name" class="form-label pt-1">Descripción: </label>
                             <input
                             type="text"
                             class="form-control"
-                            id="name"
+                            id="habit-name"
                             placeholder="Tender la cama..."
                             >
                         </div>
 
-                        <button type="submit" class="btn btn-primary pt-1">
+                        <button type="submit" class="btn btn-primary pt-1" id="add-button">
                             Añadir
                         </button>
                     </form>
@@ -62,8 +56,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        
-    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
