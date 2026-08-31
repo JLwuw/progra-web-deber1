@@ -39,6 +39,9 @@ new_habit_form.addEventListener("submit", (event) => {
 
     addHabit(name, false)
     new_habit_name.value = ""
+
+    localStorage.setItem("habits_list", JSON.stringify(habits_list))
+    console.log(localStorage.getItem("habits_list"))
     renderHabits()
 })
 
@@ -66,6 +69,8 @@ habits_ul.addEventListener("click", (event) => {
         habits_list = habits_list.filter((h) => h != habit)
     }
 
+    localStorage.setItem("habits_list", JSON.stringify(habits_list))
+    console.log(localStorage.getItem("habits_list"))
     renderHabits()
 })
 
@@ -76,16 +81,18 @@ function renderHabits() {
         const li = document.createElement("li")
         li.classList.add("row", "gap-2")
 
-        if (habit.complete) {
+        const {name: name, complete: complete} = habit
+
+        if (complete) {
             li.classList.add("habits-list-item-completed")
         }
         else {
             li.classList.add("habits-list-item")
         }
 
-        const name = document.createElement("p")
-        name.classList.add("col-7")
-        name.textContent = habit.name
+        const p = document.createElement("p")
+        p.classList.add("col-7")
+        p.textContent = name
 
         const complete_button = document.createElement("button")
         complete_button.type = "button"
@@ -101,9 +108,16 @@ function renderHabits() {
         delete_button.dataset.index = index
         delete_button.textContent = "Borrar"
 
-        li.append(name, complete_button, delete_button)
+        li.append(p, complete_button, delete_button)
         habits_ul.appendChild(li)
     })
+}
+
+
+const saved_list = JSON.parse(localStorage.getItem("habits_list"))
+
+if (saved_list) {
+    habits_list = saved_list
 }
 
 renderHabits()
